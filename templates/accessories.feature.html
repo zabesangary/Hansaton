@@ -1,0 +1,22 @@
+<img src="{{feature.background}}" class="background-image">
+
+<div class="float-right">
+  <div class="inline product-description  feature-accessories-panel" ng-class="{ 'no-controls-feature-accessories-panel': accessories.length <= 1 }">
+ <div class="product-description-top slightly-transparent" ng-style="{ height: (accessory.panelHeight || 450) + 'px' }">
+      <h4 class="newline-break" ng-bind="accessory.name"></h4 ><br>
+      <p ng-bind="accessory.description"></p>
+      <img ng-src="{{accessory.image}}" class="feature-accessory-image">
+    </div>
+    <div class="accessories-button-holder">
+      <a href ng-click="prevAccessory()" class="product-description-bottom-left inline" ng-if="accessories.length > 1">
+        <div class="less-than"></div>
+        zurück
+      </a><!-- This comment prevents an undesirable space between the buttons
+      --><a href ng-click="nextAccessory()" class="product-description-bottom-right inline" ng-if="accessories.length > 1">
+        weiter
+        <div class="greater-than"></div>
+      </a>
+    </div>
+  </div>
+  <br>
+</div>

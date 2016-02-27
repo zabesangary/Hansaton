@@ -1,0 +1,40 @@
+<div class="accessory-main-display">
+  <img ng-src="{{accessory.image}}"><br>
+  <div class="accessory-feature" ng-repeat="feature in accessory.features">
+    <img src="images/green-check-mark.png">
+    <span ng-bind="feature"></span>
+  </div>
+</div>
+
+<div class="float-right">
+  <div class="inline product-description">
+    <div class="product-description-top" style="height: 445px;">
+      <h4 class="newline-break" ng-bind="accessory.descriptionTitle"></h4><br>
+      <p ng-bind="accessory.description"></p>
+      <div ng-if="currentAccessory <= 0">
+      
+      </div>
+    </div>
+    <div class="product-description-bottom" ng-if="currentAccessory <= 0">
+        <a ui-sref="accessories.overview({ accessory: 1 })">Start</a>
+    </div>
+    <a ui-sref="accessories.overview({ accessory: currentAccessory - 1 })" class="product-description-bottom-left inline" ng-if="currentAccessory > 0">
+      <div class="less-than"></div>
+      zurück
+    </a><!-- This comment prevents an undesirable space between the buttons
+    --><a ui-sref="accessories.overview({ accessory: currentAccessory + 1 })" class="product-description-bottom-right inline" ng-if="currentAccessory > 0 && currentAccessory < accessories.length - 1">
+      weiter
+      <div class="greater-than"></div>
+    </a><!-- Same as above comment
+    --><div class="product-description-bottom-right inline empty" ng-if="currentAccessory > 0 && currentAccessory >= accessories.length - 1">
+      <div class="place-holder"></div>
+    </div>
+  </div>
+  <br>
+</div>
+<div class="accessory-list">
+  <a ng-repeat="loopAccessory in accessories" ui-sref="accessories.overview({ accessory: $index })" ui-sref-active="active" class="design-thumbnail-holder">
+    <img ng-src="{{loopAccessory.image}}"><br>
+    <span ng-bind="loopAccessory.name"></span>
+  </a>
+</div>

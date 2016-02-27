@@ -1,0 +1,20 @@
+<h1>Visitors Info</h1>
+
+
+<div class="view-container situation-overview">
+    <header>
+
+
+    </header>
+        <div class="scroll-container">
+        <div class="scroller" ng-style="{'width': (infoData.length * 380 + 100) + 'px'}">
+            {{ infoData }}
+            <div class="situation-preview" ng-repeat="situation in typesOverviewsData" class="">
+                <div ng-class="'preview-img info-preview-' + situation.name">
+                    <a ui-sref="type-overview"></a>
+                </div>
+                <div class="preview-text" ng-bind-html="situation.intro | to_trusted"></div>
+            </div>
+        </div>
+        </div>
+        </div>

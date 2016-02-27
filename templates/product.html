@@ -1,0 +1,7 @@
+<div ng-if="designSelected">
+  <navbar back-state="'product.list'" back-state-params="{}" title="title" items="navItems" class="navbar-small-title"></navbar>
+</div>
+<div ng-if="!designSelected">
+  <navbar back-state="'overview'" back-state-params="{ topic: 'product-types' }" title="title" items="navItems" class="navbar-small-title"></navbar>
+</div>
+<div ui-view class="inner-view"></div>

@@ -1,0 +1,26 @@
+<navbar back-state="'overview'" back-state-params="{ topic: 'care' }" title="title" items="navItems"></navbar>
+
+<div class="product-care-image-container">
+  <img class="product-care-image" ng-src="{{type.products[currentProduct].image}}">
+</div>
+<div class="cleaning-product-description"><!-- Comment here prevents unnecessary space
+  --><h3 ng-bind="type.products[currentProduct].name"></h3><!-- same
+  --><p ng-bind="type.products[currentProduct].text"></p><!-- same
+  --><ul><!-- same
+    --><li ng-repeat="point in type.products[currentProduct].bulletPoints"><!-- same
+      --><span ng-bind="point"></span> <!-- same
+    --></li><!-- same
+    --></ul><!-- same
+  --><ol><!-- same
+    --><li ng-repeat="point in type.products[currentProduct].orderedList"><!-- same
+      --><span ng-bind="point"></span> <!-- same
+    --></li><!-- same
+  --></ol>
+</div>
+
+<div class="cleaning-product-list">
+  <div class="cleaning-product" ng-repeat="product in type.products" ng-class="{ active: currentProduct === $index }" ng-click="$parent.currentProduct = $index">
+    <img ng-src="{{product.image}}"><br>
+    <span ng-bind="product.name"></span>
+  </div>
+</div>

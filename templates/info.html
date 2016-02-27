@@ -1,0 +1,49 @@
+<navbar back-state="'overview'" back-state-params="{ topic: 'info' }" title="title" items="navItems" class="navbar-small-title"></navbar>
+
+<div class="float-right">
+  <div class="inline product-description">
+    <div class="product-description-top" ng-style="{ height: topic.panelHeight + 'px' }">
+      <div ng-if="currentItem < 0">
+        <h4 ng-bind="topic.descriptionTitle"></h4><br>
+        <p ng-bind="topic.description"></p>
+      </div>
+      <div ng-if="currentItem >= 0">
+        <h4 ng-bind="topic.items[currentItem].title"></h4><br>
+        <p ng-bind="topic.items[currentItem].description"></p>
+      </div>
+    </div>
+    <div class="product-description-bottom" ng-if="currentItem < 0">
+      <a href ng-click="$parent.currentItem = 0; initNewSlide()">Start</a> <!-- $parent goes above the ng-if so that the change affects more than just this element -->
+    </div>
+    <a href ng-click="$parent.currentItem = currentItem - 1; initNewSlide()" class="product-description-bottom-left inline" ng-if="(!topic.noStart || currentItem > 0) && currentItem >= 0">
+      <div class="less-than"></div>
+      zurück
+    </a><!-- This comment prevents an undesirable space between the buttons
+    --><div class="product-description-bottom-left inline empty" ng-if="topic.noStart && currentItem <= 0">
+      <div class="place-holder"></div>
+    </div><!-- Same as above comment
+    --><a href ng-click="$parent.currentItem = currentItem + 1; initNewSlide()" class="product-description-bottom-right inline" ng-if="currentItem >= 0 && currentItem < topic.items.length - 1">
+      weiter
+      <div class="greater-than"></div>
+    </a><!-- Same as above comment
+    --><div class="product-description-bottom-right inline empty" ng-if="currentItem >= 0 && currentItem >= topic.items.length - 1">
+      <div class="place-holder"></div>
+    </div>
+  </div>
+  <br>
+</div>
+<div ng-repeat="item in topic.items" class="feature-holder"> <!-- Has width:0, height: 0 so features do not take up space -->
+  <a
+    class="info-item"
+    ng-if="item.coords"
+    ng-style="{ left: item.coords.x + 'px', top: item.coords.y + 'px' }"
+    ng-class="{ active: currentItem === $index }"
+    ng-bind="$index + 1"
+    href
+    ng-click="$parent.$parent.currentItem = $index; initNewSlide()"></a>
+</div>
+<img ng-src="{{currentItem >= 0 ? topic.items[currentItem].image : topic.startingImage}}" style="max-width: 600px; max-height: 538px;">
+<svg width="688px" height="478px" viewBox="0 0 688 478" ng-show="topic.items[currentItem].svgAnimation">
+  <g id="svgAnimation"></g>
+</svg>
+<span class="info-bottom-note" ng-bind="topic.bottomNote"></span>

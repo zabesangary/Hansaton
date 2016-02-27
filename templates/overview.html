@@ -1,0 +1,22 @@
+<a ui-sref="main" ng-if="section.state === 'info'" class="overview-back">
+  <div class="back-icon-circle">
+    <div class="less-than">
+    </div>
+  </div>
+  Zurück
+</a>
+
+<div class="overview-link-container">
+  <a class="overview-link" ng-repeat="link in section.links" ng-href="{{$state.href(link.state, link.stateParams)}}">
+    <img ng-src="{{link.image}}"><br>
+    <h3 ng-bind="link.name"></h3>
+    <p ng-bind="link.description"></p>
+  </a>
+</div>
+
+<div class="bottom-navbar" ng-if="hasNavbar">
+  <div class="section" ng-repeat="section in sections">
+    <a ui-sref="overview({ topic: section.state })" ng-class="{ current: currentSection == section.state }" data-name="{{section.state}}" ng-bind="section.name"></a>
+    <span class="greater-than" ng-if="!$last"></span>
+  </div>
+</div>

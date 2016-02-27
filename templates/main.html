@@ -1,0 +1,17 @@
+<div class="main-page-popup-container" ng-if="popupActive">
+  <div class="main-page-popup">
+    <h4>Warnung</h4>
+    <p>Um optimale Beratungsergebnisse zu erzielen, sollten Sie diesen Zugang nur zusammen mit Ihrem Hörgeräteakustiker nutzen. Die Verwendung eines Kopfhörers wird empfohlen. Wollen Sie den Akustiker-Zugang nutzen? </p>
+    <div class="main-page-popup-okay" ng-click="specialistEnter()">OK</div><!-- This comment prevents an unwanted space between the buttons
+    --><div class="main-page-popup-cancel" ng-click="$parent.popupActive = false">Abbrechen</div>
+  </div>
+</div>
+
+<div class="mainPage-buttons">
+  <button class="btn" ng-click="visitorEnter()">Informationen</button>
+  <button class="btn" ng-click="popupActive = true">Expertenbereich</button>
+</div>
+<div class=logo-hansaton>
+  <img src="images/u2.png">
+</div>
+<img class="background" src="images/u0.jpg">

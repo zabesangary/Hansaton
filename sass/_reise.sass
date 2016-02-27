@@ -1,0 +1,104 @@
+.reise
+  .ohr-image-container
+    max-width: 761px
+    position: absolute
+    top: 100px
+    overflow: hidden
+
+    .info-circle
+      position: absolute
+      height: 60px
+      width: 60px
+      border: 2px solid #ffffff
+      line-height: 56px
+      border-radius: 50%
+      text-align: center
+      color: #ffffff
+      font-size: 16px
+
+      &.active
+        background-color: rgba(255,255,255,0.3)
+
+      &.circle-0
+        display: none
+      &.circle-1
+        top: 314px
+        left: 260px
+      &.circle-2
+        top: 234px
+        left: 478px
+      &.circle-3
+        top: 238px
+        left: 544px
+      &.circle-4
+        top: 195px
+        left: 596px
+
+    .ohr-image
+      width: 761px
+
+  .info-box
+    overflow: hidden
+    position: absolute
+    top: 120px
+    right: 20px
+    box-shadow: 0px 3px 9px 0px rgba(50, 50, 50, 0.3)
+    width: 280px
+    height: 450px
+    border-radius: 5px
+    padding: 60px 20px 100px 20px
+
+    h3
+      font-size: 20px
+      margin-bottom: 8px
+
+    .nav-info
+      position: absolute
+      height: 100px
+      left: 0
+      bottom: 0
+      width: 100%
+      display: flex 
+
+      > div
+        display: flex
+        flex: 1
+
+      .next, .prev
+        flex: 1
+        text-align: center
+        font-size: 14px
+        padding-top: 42px
+        -webkit-user-select: none
+        color: white
+        position: relative
+
+        img
+          vertical-align: top
+
+        &.next
+          background-color: darken($main-green, 10%)
+          img
+            margin-left: 15px
+
+        &.prev
+          background-color: $main-green
+          img
+            margin-right: 15px
+
+      .start
+          background-color: $main-green
+          a
+            margin: 30px auto
+            display: block;
+            line-height: 38px;
+            text-align: center;
+            width: 100px
+            height: 40px;
+            border-radius: 50px;
+            color: white
+            border: 2px solid white;
+      
+
+
+

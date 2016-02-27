@@ -1,0 +1,41 @@
+<h3 class="inline">Performance<br>Level</h3>
+<div class="performance-levels matrix-levels">
+  <a class="performance-level" ng-repeat="level in levels" href ng-click="$parent.currLevel = level.level" ng-class="{ active: currLevel === level.level }">
+    <div class="performance-bar" ng-style="{ height: 5 + $index * 2 + 'px', top: 10 - $index * 2 + 'px' }"></div>{{level.level}}
+  </a>
+</div>
+<p class="matrix-explination">Wählen Sie einen der Performance Level, um die Unterstützung in der jeweiligen akustische Situation darzustellen.</p>
+<div class="technology-matrix">
+  <div class="notch-container">
+    <div class="notch" ng-style="{ left: 275 + levelIndicies[currLevel] * 61.5 + 'px' }"></div>
+  </div>
+  <div class="matrix-row">
+    <h3 class="matrix-row-heading">Unterstützung</h3>
+    <div class="matrix-row-main">
+      <div class="matrix-column" ng-repeat="situation in situations">
+        <div class="matrix-star" ng-repeat="i in [5, 4, 3, 2, 1]">
+          <img src="images/green-star.png" ng-class="{ off: ratings[currLevel][$parent.$index] < i, 'not-relevant': !active[$parent.$index] }"><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="matrix-row">
+    <h3 class="matrix-row-heading">Hörsituation</h3>
+    <div class="matrix-row-main">
+      <div class="matrix-column" ng-repeat="situation in situations" ng-class="{ transparent: !active[$index] }">
+        <img ng-src="{{situation.icon}}"><br>
+        <span ng-bind="situation.name">
+      </div>
+    </div>
+  </div>
+  <div class="matrix-row">
+    <h3 class="matrix-row-heading">Relevanz</h3>
+    <div class="matrix-row-main">
+      <div class="matrix-column" ng-repeat="situation in situations">
+        <div class="slider" ng-class="{ active: active[$index] }" ng-click="$parent.active[$index] = !$parent.active[$index]">
+          <div class="slider-circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

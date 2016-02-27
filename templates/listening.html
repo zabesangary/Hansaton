@@ -1,0 +1,37 @@
+<div class="topnav listening-navbar">
+  <navbar back-state="'overview'" back-state-params="{ topic: 'listening-situations' }" title="title" items="navItems"></navbar>
+</div>
+<img src="{{situation.background}}" class="background-image">
+<div class="listening-menu">
+  <a href class="listening-audio-file" ng-repeat="audioType in audioTypes" ng-click="playAudio(audioType)" ng-class="{ active: audioPlaying.name === audioType.name }">
+    <span ng-bind="audioType.name"></span>
+    <img src="images/listening-audio-speaker.png" class="speaker-icon">
+  </a>
+  <hr>
+  <a class="listening-stop-outer" href ng-click="toggleAudio()">
+    <div class="listening-play-inner" ng-if="!audioPlaying">&#9650;</div>
+    <div class="listening-stop-inner" ng-if="audioPlaying"></div>
+  </a>
+</div>
+<div class="more-information-container" ng-class="{ expanded: moreInfoExpanded }">
+  <div class="more-information" ng-click="moreInfoExpanded = !moreInfoExpanded">
+    <div class="more-information-label">
+      <div class="arrow-up"></div><br>
+      <span>Mehr über diese Hörsituation erfahren </span>
+    </div>
+    <div class="more-information-main">
+      <p ng-bind="situation.moreInfo"></p>
+      <div class="did-you-know" ng-class="situation.didYouKnowStyle">
+        <i>Wussten Sie schon ...?</i>
+        <ul>
+          <li ng-repeat="item in situation.didYouKnow">
+            <span ng-bind="item"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<audio id="listeningAudioPlayer" loop>
+  <source id="listeningAudioPlayerSource">
+</audio>

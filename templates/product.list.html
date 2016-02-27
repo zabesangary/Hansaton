@@ -1,0 +1,48 @@
+<div class="product-sidebar-container">
+  <div class="inline product-description">
+    <div class="product-description-top" ng-style="{ height: product.panelHeight + 'px' }">
+      <div ng-if="currentFeature < 0">
+        <h4 ng-bind="product.descriptionTitle"></h4><br>
+        <p ng-bind="product.description"></p>
+      </div>
+      <div ng-if="currentFeature >= 0">
+        <h4 ng-bind="product.features[currentFeature].title"></h4><br>
+        <p ng-bind="product.features[currentFeature].description"></p>
+      </div>
+    </div>
+    <div class="product-description-bottom" ng-if="currentFeature < 0">
+      <a href ng-click="$parent.currentFeature = 0">Start</a> <!-- $parent goes above the ng-if so that the change affects more than just this element -->
+    </div>
+    <a href ng-click="$parent.currentFeature = currentFeature - 1" class="product-description-bottom-left inline" ng-if="currentFeature >= 0">
+      <div class="less-than"></div>
+      zurück
+    </a><!-- This comment prevents an undesirable space between the buttons
+    --><a href ng-click="$parent.currentFeature = currentFeature + 1" class="product-description-bottom-right inline" ng-if="currentFeature >= 0 && currentFeature < product.features.length - 1">
+      weiter
+      <div class="greater-than"></div>
+    </a><!-- Same as above comment
+    --><div class="product-description-bottom-right inline empty" ng-if="currentFeature >= 0 && currentFeature >= product.features.length - 1">
+      <div class="place-holder"></div>
+    </div>
+  </div>
+  <br>
+  <a ng-repeat="design in product.designs" ui-sref="product.model({ design: design.sref, color: 0 })" class="design-thumbnail-holder">
+    <img ng-src="{{design.thumbnail}}"><br>
+    <div class="greater-than float-right-no-margin"></div>
+    <span ng-bind="design.name"></span>
+  </a>
+</div>
+<img ng-repeat="image in product.rulerImages" ng-src="{{image}}">
+<div class="product-image-container" ng-style="{ 'margin-top': product.featuresImageTopMargin + 'px' }">
+  <div ng-repeat="feature in product.features" class="feature-holder"> <!-- Has width:0, height: 0 so features do not take up space -->
+    <a
+      class="feature"
+      ng-style="{ left: feature.coords.x + 'px', top: feature.coords.y + 'px', 'margin-top': product.featuresImageTopMargin + 'px' }"
+      ng-class="{ active: currentFeature === $index }"
+      ng-bind="$index + 1"
+      href
+      ng-click="$parent.currentFeature = $index"></a>
+  </div>
+  <img ng-src="{{product.featuresImage}}" style="max-width: 600px; max-height: 538px;">
+
+    

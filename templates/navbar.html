@@ -1,0 +1,22 @@
+<div class="topbar">
+  <h3 class="inline back-button">
+    <a ng-href="{{$state.href(backState, backStateParams)}}">
+      <div class="back-icon-circle">
+        <div class="less-than">
+        </div>
+      </div>
+      Zurück
+    </a>
+  </h3>
+  <h1 class="inline title" ng-bind="title"></h1>
+  <div class="inline float-right">
+    <div ng-repeat="item in items" class="inline">
+      <a href ng-href="{{$state.href(item.state, item.stateParams)}}" ng-class="{ active: $state.includes(item.state, item.stateParams) }" class="circled">
+        <span ng-if="item.text" ng-bind="item.text"></span>
+        <span ng-if="item.icon" class="icon" ng-class="'icon-' + item.icon"></span>
+        <img ng-if="item.image" ng-src="{{item.image}}"></img>
+        <img ng-if="!item.image && item.imageActive && item.imageInactive" ng-src="{{$state.includes(item.state, item.stateParams) ? item.imageActive : item.imageInactive}}"></img>
+      </a>
+    </div>
+  </div>
+</div>

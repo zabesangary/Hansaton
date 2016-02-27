@@ -1,0 +1,35 @@
+<div class="design-description float-right">
+  <a href class="design-description-left-tab" ng-class="{ active: tabSelected === 'design' }" ng-click="tabSelected = 'design'">
+    Design
+  </a><!-- This comment prevents an unwanted gap
+  --><a href class="design-description-right-tab" ng-class="{ active: tabSelected === 'specifications' }" ng-click="tabSelected = 'specifications'">
+   Gehäuse
+  </a>
+  <div class="design-description-main" ng-style="{ height: design.featuresPanelContentHeight + 'px' }">
+    <div ng-if="tabSelected === 'design'">
+      <div ng-repeat="feature in design.designFeatures" class="designFeature">
+        <img ng-src="{{feature.icon}}">
+        <p ng-bind="feature.text"></p>
+      </div>
+    </div>
+    <div ng-if="tabSelected === 'specifications'">
+      <ul class="specifications">
+        <li ng-repeat="spec in design.specifications">
+          <span ng-bind="spec"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="box-shadower" ng-style="{ height: design.featuresPanelContentHeight + 60 + 'px' }"></div>
+</div>
+<img ng-repeat="image in design.rulerImages" ng-src="{{image}}" style="vertical-align: bottom;">
+<img ng-src="{{currColor.url}}"><br>
+<b ng-bind="currColor.descriptionTitle"></b>
+<p ng-bind="currColor.description" class="color-description"></p>
+<div style="clear: all;"></div>
+<div class="bottom-colors">
+  <a class="color-link" href ng-repeat="color in design.colors" ng-class="{'current': currColor.name == color.name}" ui-sref="product.model({ color: $index })" ui-sref-active="active">
+    <img ng-src="{{color.url}}">
+    <span ng-bind="color.name"></span>
+  </a>
+</div>

@@ -1,0 +1,52 @@
+<div class="view-container situation" ng-swipe-left="swipeTo(-1)" ng-swipe-right="swipeTo(1)">
+    <header>
+        <a ui-sref="situation-overview" class="top-left-absolute back-button">
+            Zurück
+        </a>
+        <div class="title"><h1>{{currentSituation.title}}</h1></div>
+
+        <div class="situations-nav">
+            <a ng-repeat="situation in situationsData"
+               ng-class="isNavItemActive($index)"
+               class="situations-nav-button nav-{{situation.name}}"
+               ng-click="switchPage($index)"></a>
+        </div>
+    </header>
+
+    <div class="background-image-container">
+
+        <div class="background-slider" ng-style="{'width': situationsData.length * 1024 + 'px', '-webkit-transform': 'translateX('+ (-1024 * currentIndex)  + 'px)'}">
+        <div ng-repeat="situation in situationsData"
+            class="situation-bg-{{situation.name}}"></div>
+        </div>
+    </div>
+    <div class="extra-info">
+        <div class="control" ng-click="toggleExtraInfo()">Mehr Information</div>
+        <div class="info-text" ng-class="{'open': showExtraInfo }">
+            <div ng-bind-html="currentSituation.info | to_trusted"></div>
+        </div>
+    </div>
+
+     <div class="controls-features-box">
+         <div class="controls">
+
+             <div class="qualities">
+                 <a ng-repeat="number in [0,1,2]"
+                    class="quality"
+                    ng-class="isQualityActive($index)"
+                    ng-click="switchQuality(number)">Hören und Erleben</a>
+             </div>
+             <div class="play-stop">
+                 <button ng-class="{'active': isPlaying}" ng-click="togglePlay()" class="play"></button>
+             </div>
+         </div>
+
+         <div class="features">
+            <h3>Hören und Erleben</h3>
+             <ul>
+                 <li ng-repeat="feature in currentSituation.features"
+                     class="feature">{{feature}}</li>
+             </ul>
+         </div>
+     </div>
+</div>

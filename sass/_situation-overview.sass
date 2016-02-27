@@ -1,0 +1,57 @@
+.situation-overview
+
+  .scroll-container
+    height: $app-height
+    width: $app-width
+    overflow-x: auto
+    overflow-y: hidden
+    position: relative
+    -webkit-overflow-scrolling: touch
+    &::-webkit-scrollbar
+      width: 0 !important
+
+  .scroller
+    height: $app-height
+
+  .situation-preview
+    margin-top: 150px
+    float: left
+    width: 280px
+    height: 500px
+    margin-left: 100px
+
+    &:last-of-type
+      margin-right: 100px
+
+    .preview-img
+      border-radius: 50%
+      overflow: hidden
+      width: 280px
+      height: 280px
+      position: relative
+      box-shadow: 0 3px 9px 0 rgba(50,50,50,.3)
+
+      a
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+
+      @each $situation in $situations
+        &.situation-preview-#{$situation}
+          background: url('../images/#{$situation}-preview.jpg') center 100% no-repeat
+
+    .preview-text
+      margin: 20px 10px
+      height: 220px
+      text-align: center
+
+      h3
+        font-size: 25px
+        margin-bottom: 20px
+
+
+
+

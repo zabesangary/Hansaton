@@ -1,0 +1,42 @@
+<div class="technologies" ng-style="{ 'margin-right': (currLevel >= 3 || technologySelected) ? '200px' : 0 }">
+  <div ng-if="currLevel >= 3 && !technologySelected" class="technology-right-panel">
+    <h3 class="technology-right-panel-title">AutoSurroundHD Funktionen  </h3>
+    <div class="technology-right-panel-activity" ng-repeat="activity in activities" ng-if="currLevel >= activity.level">
+      <img ng-src="{{activity.greenIcon}}">
+      <p ng-bind="activity.text"></p>
+    </div>
+  </div>
+  <div ng-if="technologySelected" class="technology-right-panel">
+    <h3 class="technology-right-panel-title"></h3>
+    <div class="technology-right-panel-technology" ng-bind="technologySelected.name"></div>
+    <p class="technology-right-panel-technology-description" ng-bind="technologySelected.description"></p>
+  </div>
+  <div class="technology-row">
+    <h2>Technologie</h2>
+    <p>Für eine Erläuterung der einzelnen Funktionen, klicken Sie auf das gewünschte Feature. </p>
+  </div>
+  <div ng-repeat="technology in technologies" class="technology-row">
+    <p class="technology-name" ng-bind="technology.name"></p>
+    <div class="technology-feature-container">
+      <span class="technology-feature" ng-repeat="technologyFeature in technology.contents" ng-bind="technologyFeature.name" ng-class="{ active: !currLevel || currLevel >= technologyFeature.level, selected: technologySelected.name === technologyFeature.name }" ng-click="technologyClick(technologyFeature)"></span>
+    </div>
+  </div>
+</div>
+
+<div class="performance-levels" ng-style="{ left: currLevel > 0 ? '-37px' : 0 }">
+  <a class="performance-level performance-level-none" ng-if="currLevel > 0" ui-sref="technology.performance-levels({ level: 0 })">keine</a>
+  <a class="performance-level" ng-repeat="level in levels" ng-bind="level.level" ng-class="{ 'current': currLevel == level.level }" ui-sref="technology.performance-levels({ level: level.level })"></a>
+</div>
+<br>
+<div class="performance-graph">
+  <img class="background" src="images/performance-graph-background.png">
+  <div class="bar" ng-repeat="level in levels" ng-style="{ left: $index * 60 + 'px', height: levelHeightLookup[level.channels] + 'px' }" ng-class="{ active: currLevel == level.level }"></div>
+  <div ng-repeat="level in levels">
+    <img class="activity" ng-repeat="activity in activities" ng-if="level.level >= activity.level" ng-src="{{activity.icon}}" ng-style="{ bottom: activity.height + 'px', left: $parent.$parent.$index * 60 + 'px' }">
+  </div>
+  <div class="callout" ng-if="currLevel" ng-class="{ left: currLevel < 7, right: currLevel >= 7 }" ng-style="{ left: (currLevelIndex + 1) * 60 + 'px', bottom: calloutHeightLookup[currLevel] + 'px' }">
+    <div class="callout-notch"></div>
+    <span ng-bind="currLevelInfo.description"></span>
+  </div>
+</div>
+ <div class="warning-text">Bitte wählen Sie einen der Performance Level aus.*</div>
